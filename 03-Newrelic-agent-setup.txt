@@ -46,8 +46,10 @@ log_file: /var/log/newrelic-infra/newrelic-infra.log
 
 
 
-SELECT * FROM Log WHERE appName = '210135-Partner Ready Portal (PRP)-STG3_apache' WHERE filePath = '/opt/cloudhost/logs/apache/ssl_request_log'
- 
+$ SELECT * FROM Log WHERE appName = '210135-Partner Ready Portal (PRP)-STG3_apache' WHERE filePath = '/opt/cloudhost/logs/apache/ssl_request_log'
+$ select  * FROM JVMSample WHERE appName ='210135-Partner Ready Portal (PRP)-Production' AND domain LIKE '%net.sf.ehcache%' SINCE 1 hour ago LIMIT MAX
+$ select  * FROM JVMSample WHERE apmApplicationNames ='|210135-Partner Ready Portal (PRP)-STG1|' AND domain LIKE '%com.zaxxer.hikari%' SINCE 1 day ago LIMIT MAX 
+$ select unique(appName) from JVMSample since 1 month ago
 
 
 logs:
