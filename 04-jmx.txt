@@ -1,0 +1,41 @@
+error to check in path:
+-----------------------
+Failed to open JMX connection, error: failed to open JMX connection, error: nrjmx client error: failed to start \"/usr/bin/
+nrjmx\": fork/exec /usr/bin/nrjmx: no such file or directory.
+
+==========================================
+
+sudo tee /etc/yum.repos.d/newrelic-infra.repo <<EOF
+[newrelic-infra]
+name=New Relic Infrastructure
+baseurl=https://download.newrelic.com/infrastructure_agent/linux/yum/el/7/x86_64
+gpgkey=https://download.newrelic.com/infrastructure_agent/gpg/newrelic-infra.gpg
+gpgcheck=1
+enabled=1
+EOF
+
+==========================
+sudo tee /etc/yum.repos.d/newrelic-infra.repo <<EOF
+[newrelic-infra]
+name=New Relic Infrastructure
+baseurl=https://download.newrelic.com/infrastructure_agent/linux/yum/el/8/x86_64/
+gpgkey=https://download.newrelic.com/infrastructure_agent/gpg/newrelic-infra.gpg
+gpgcheck=1
+enabled=1
+EOF
+
+==========================
+sudo yum clean all 
+sudo yum makecache
+sudo yum install nri-jmx -y
+yum repolist | grep newrelic
+
+
+===========================
+
+queries:
+select  * FROM JVMSample WHERE appName LIKE '%210135-Partner Ready Portal (PRP)-STG3%' AND domain LIKE '%java%' SINCE 5 minutes ago LIMIT MAX
+
+select uniques(appName) from JVMSample since 1 day ago
+
+select  * FROM JVMSample SINCE 1 hour ago LIMIT max
