@@ -1,0 +1,67 @@
+The data that we collect for monitoring is called the telemetry data.
+There are two metrics that we can use to measure the DevOps success 
+    1)MTTD - Mean time to detection
+        MTTD is the amount of time on average between the start of an issue and when the team becomes aware of it 
+    2)MTTR - Mean time to resolve
+        Mttr is the average time between when an issue is detected and when the systems are fixed 
+
+
+ method for collecting the metrics
+ ================================
+1)Service Layer -> RED Method in the context of observability typically refers to a way to monitor and define key metrics for applications, particularly in the realm of performance monitoring and issue detection.
+    Rate: This tracks the throughput of your service, such as requests per second. It measures how many operations are completed successfully over time.
+    Errors: This involves monitoring the rate of errors occurring in your application or service. Identifying errors quickly can prevent a negative impact on user experience.
+    Duration: This metric measures the time it takes to complete a request or operation. Monitoring duration helps identify slow responses or performance bottlenecks.
+
+2)Infrastructure Layer -> USE Method is a framework used for evaluating the state of infrastructure and resources in observability
+        Utilization: This measures the extent to which resources are being used. For example, it can reference CPU utilization as a percentage or disk space usage.
+
+        Saturation: This indicates how close the resources are to their capacity limits. If a resource is fully utilized (e.g., 100% network utilization), it can lead to issues such as queuing  packets, which is considered saturation. An ideal state would be to have a saturation level of zero.
+
+        Errors: This tracks the rate of errors encountered by the system, such as disk write errors. Aiming for zero errors is the goal, as it indicates the system is functioning properly.
+
+3)UI layer ->  core web vitals 
+        Core Web Vitals are specific metrics introduced by Google that focus on the user experience aspects of website performance. These metrics are crucial for assessing how users interact with a web page and are important for search engine optimization. The three key components of Core Web Vitals are:
+
+            Largest Contentful Paint (LCP): This measures the loading performance of a web page. It determines how long it takes for the largest visible content element (like an image or text block) to appear on the screen, reflecting the perceived load time.
+
+            First Input Delay (FID): This measures the responsiveness of a web page. It tracks the time from when a user first interacts with a page (e.g., clicks a button or types in a text box) to when the browser is able to respond to that interaction.
+
+            Cumulative Layout Shift (CLS): This assesses the visual stability of a page by measuring how much the layout shifts during the loading process. A stable layout is crucial for a good user experience, as unexpected shifts can lead to users clicking the wrong elements.
+
+            Google considers these metrics essential for determining a site's quality, and poor performance in any of these areas can negatively impact search rankings.
+
+4) Google later introduced a new method called four Golden Signals that covers the service layer and to some extent infrastructure layer.
+
+=======================================
+
+1)Monitoring vs observability
+    Observability refers to the ability to extract insights from a system by understanding its internal state through the data it produces. 
+    Monitoring: This involves collecting and visualizing data about a system to track its health and performance. It answers key questions such as:
+
+        Is the service on?
+        Is the service functioning as expected?
+        Is the service performing well? Monitoring is often limited to predefined metrics and is well-suited for simpler, monolithic architectures where failure points are anticipated.
+
+    Observability: In contrast, observability allows for a deeper understanding of complex, distributed systems, such as microservices. It doesn't rely solely on what you know in advance; instead, it provides the capability to analyze data and identify issues that were not previously anticipated.
+
+2)Types of telemetry Data
+    "MELT"
+        Metrics: These are aggregated values that provide insights over a period of time. For example, the number of requests processed by a server every minute. Metrics help in comparing performance across different time intervals.
+
+        Events: An event is an action that occurs at a specific moment in time. For example, a user clicking a button at 3:20 PM. Events can often be found in event streaming platforms, and they validate that a specific action has taken place.
+
+        Logs: Logs are detailed records of events that occur within a system. They are useful for debugging and provide context for what happened leading up to an issue.
+
+        Traces: Traces are used to track the flow of requests through a distributed system. They help to understand how a single request interacts with multiple services and can highlight performance bottlenecks.
+
+3)Types of agents in Newrelic
+    APM Agents: These agents are designed for Application Performance Monitoring and are used primarily for server-side applications, such as microservices.
+    
+    Browser Agents: These are used for monitoring web applications running in browsers. They capture client-side performance metrics and user interactions, allowing you to understand how your web application performs from the user's perspective.
+
+    Mobile Agents: These agents monitor mobile applications running on users' mobile devices. They provide insights into app performance, usage metrics, and user interactions.
+
+    Infrastructure Agents: These agents are responsible for monitoring the infrastructure itself,
+
+4)Newrelic has db called NRDB, whic is schema-less
